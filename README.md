@@ -1,6 +1,7 @@
 #This is an implementation of clean code architecture
 
 This is still work in progress. 
+
 Next : 
 Will read the configuration from environment variables.
 Will plug the project with mysql database using docker.
