@@ -2,7 +2,7 @@ package service
 
 import (
 	"context"
-	"github.com/rajaanova/cleancode/internal/entity"
+	"github.com/rajaanova/cleancode/app/entity"
 )
 
 

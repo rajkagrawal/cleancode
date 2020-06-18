@@ -4,8 +4,8 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/gorilla/mux"
-	"github.com/rajaanova/cleancode/internal/entity"
-	"github.com/rajaanova/cleancode/internal/service"
+	"github.com/rajaanova/cleancode/app/entity"
+	"github.com/rajaanova/cleancode/app/service"
 	"net/http"
 )
 

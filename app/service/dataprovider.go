@@ -2,7 +2,7 @@ package service
 
 import (
 	"context"
-	"github.com/rajaanova/cleancode/internal/entity"
+	"github.com/rajaanova/cleancode/app/entity"
 )
 
 // This interface can go in entity package if entity logic demands a call to database

@@ -1,0 +1,13 @@
+docker run --name mysql -v mysql-gradekid:/var/lib/mysql -p 3308:3306 -e MYSQL_ROOT_PASSWORD=raj --rm --network mysql-app -d mysql
+docker run --name app -it --rm --network mysql-app -p 8080:8080 --env-file env  golangapp
+docker build -t golangapp .
+
+
+curl -X POST http://localhost:8080/cleancode/v1/students -d '{"Name":"raj","RollNumber":"123","Class":"X","Age":10,"Gender":"M"}'
+
+docker rmi -f $(docker images -f "dangling=true" -q)
+
+export $(xargs < .env)
+
+#Goog read regarding package managerment
+https://medium.com/@adiach3nko/package-management-with-go-modules-the-pragmatic-guide-c831b4eaaf31

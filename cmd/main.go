@@ -2,17 +2,22 @@ package main
 
 import (
 	"database/sql"
+	"fmt"
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/gorilla/mux"
-	"github.com/rajaanova/cleancode/internal/controller"
-	"github.com/rajaanova/cleancode/internal/persistent"
-	"github.com/rajaanova/cleancode/internal/service"
+	"github.com/rajaanova/cleancode/app/bootstrap"
+	"github.com/rajaanova/cleancode/app/controller"
+	"github.com/rajaanova/cleancode/app/persistent"
+	"github.com/rajaanova/cleancode/app/service"
 	"net/http"
 )
 
 func main() {
-
-	db, err := sql.Open("mysql", "root:raj@tcp(127.0.0.1:3308)/school")
+	config, err := bootstrap.BS{}.Boot()
+	if err != nil {
+		panic("failed to start the service "+err.Error())
+	}
+	db, err := sql.Open("mysql", fmt.Sprintf("%s:%s@tcp(%s:%s)/%s",config.DatabaseUser,config.DatabasePassword,config.DatabaseHost,config.DatabasePort,config.DatabaseName))
 	if err != nil {
 		panic(err.Error())
 	}
@@ -27,8 +32,8 @@ func main() {
 	dataProvider := persistent.NewDataprovider(db)
 	ser := service.NewService(dataProvider)
 	router.HandleFunc("/ping", func(writer http.ResponseWriter, request *http.Request) {
-		writer.Write([]byte("{'status':'ok'}"))
 		writer.WriteHeader(200)
+		writer.Write([]byte("{'status':'ok'}"))
 		return
 	})
 	studentRouter := router.PathPrefix("/cleancode").Subrouter()

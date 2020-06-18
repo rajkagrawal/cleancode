@@ -1,9 +1,9 @@
 package persistent
 
 import (
-	"database/sql"
-	"github.com/rajaanova/cleancode/internal/entity"
 	"context"
+	"database/sql"
+	"github.com/rajaanova/cleancode/app/entity"
 )
 
 type dataProvider  struct {

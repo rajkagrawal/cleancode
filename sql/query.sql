@@ -1,9 +1,8 @@
-
-
---create database school;
---use school;
 --
--- create table student (
+--
+-- create database school;
+-- use school;
+-- create table if not exists student (
 -- id int auto_increment primary key ,
 -- name varchar(40) not null,
 -- student_id varchar(20) not null,
